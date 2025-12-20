@@ -105,10 +105,10 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	size_t	i;
-	int		result;
+	long		result;
 	int		sign;
 
 	i = 0;

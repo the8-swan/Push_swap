@@ -10,7 +10,7 @@
 
 char	**ft_split(char const *s, char c);
 int	ft_isdigit(int c);
-int	ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 
 
 
