@@ -12,10 +12,16 @@
 typedef struct  stack
 {
 	int num;
+	int	index;
+	int position;
+	//int	target;
+	int costb;
+	int costa;
 	struct stack *next;
+
 	
 }stack;
-
+/*
 typedef struct s_node{
 	int				val;
 	int				ind;
@@ -29,18 +35,41 @@ typedef struct s_stack{
 	int				size;
 } t_stack;
 
+*/
 
-
-int digits_counter(char **ptr);
 
 char	**ft_split(char const *s, char c);
-int	ft_isdigit(int c);
+
 long	ft_atoi(const char *str);
-int fill_arr(int *arr, char **ptr);
-void fill_ptr(char **ptr, char **argv, int argc);
-stack *create_stack(int *arr,int c);
+
+int	fill_arr(int *arr, char **ptr);
+int	ft_isdigit(int c);
+int	digits_counter(char **ptr);
+
+
+
+stack	*before_lastnode(stack	*s);
+stack	*create_stack(int *arr,int c);
+stack	*last_node(stack	*head);
+
+
+
+void	add_back(stack **head, stack *new);
+void	add_front(stack **lst, stack *new);
+void	rotate_helper(stack **a);
+void	rrotate_helper(stack **a);
+void	swap_helper(stack *head);
+void	ft_push(stack **a, stack **b, char c);
+void	push_helper(stack **a, stack **b);
+void	fill_ptr(char **ptr, char **argv, int argc);
 void	push_swap(int	*arr, int c);
-void ft_swap(stack *a,stack *b);
+void	ft_swap(stack *a, stack *b);
+void	ft_rrotate(stack **a, stack **b);
+void	ft_rotate(stack **a, stack **b);
+void	quick_sort(int *arr, int start, int end);
+void	assign_index(stack *a, int *arr, int size);
+
+
 
 
 

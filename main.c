@@ -22,9 +22,11 @@ int main(int argc, char **argv)
 		if (!arr)
 			return (0);
 	}
+	arr = malloc(sizeof(int) * digits_counter(ptr));
 	c = fill_arr(arr, ptr);
 	if (c < 0)
 		return (0);
 	push_swap(arr,c);
 	return (0);
 }
+ 

@@ -1,33 +1,102 @@
 #include "../push_swap.h"
 
-void swap(stack *head){
-	stack *next = head->next;
-	int val = next->num;
-	next->num = head->num;
-	head->num = val;
-}
-
-void ft_swap(stack *a,stack *b)
+void ft_swap(stack *a, stack *b)
 {
 	int c;
-	
+
 	c = 0;
-	if(a && a->next!= NULL){
-		swap(a);
-		if(!b){
-			write(1,"sa\n",3);
+	if (a && a->next != NULL)
+	{
+		swap_helper(a);
+		if (!b)
+		{
+			write(1, "sa\n", 3);
 			return;
 		}
 		c++;
 	}
-	if(b && b->next!= NULL){
-		swap(b);
-		if(!a){
-			write(1,"sb\n",3);
+	if (b && b->next != NULL)
+	{
+		swap_helper(b);
+		if (!a)
+		{
+			write(1, "sb\n", 3);
 			return;
 		}
 		c++;
-	}	
-	if(c == 2)
-		write(1,"ss\n",3);
+	}
+	if (c == 2)
+		write(1, "ss\n", 3);
+}
+
+void ft_rrotate(stack **a, stack **b)
+{
+	int c;
+
+	c = 0;
+	if (a!=NULL && (*a)->next)
+	{
+		rrotate_helper(a);
+		if (!b)
+		{
+			write(1, "rra\n", 4);
+			return;
+		}
+		c++;
+	}
+	if (b!=NULL && (*b)->next)
+	{
+		rrotate_helper(b);
+		if (!a)
+		{
+			write(1, "rrb\n", 4);
+			return;
+		}
+		c++;
+	}
+	if (c == 2)
+		write(1, "rrr\n", 4);
+}
+
+void ft_rotate(stack **a, stack **b)
+{
+	int c;
+
+	c = 0;
+	if (a != NULL && (*a)->next)
+	{
+		rotate_helper(a);
+		if (!b)
+		{
+			write(1, "ra\n", 3);
+			return;
+		}
+		c++;
+	}
+	if (b != NULL && (*b)->next)
+	{
+		rotate_helper(b);
+		if (!a)
+		{
+			write(1, "rb\n", 3);
+			return;
+		}
+		c++;
+	}
+	if (c == 2)
+		write(1, "rr\n", 3);
+}
+
+void ft_push(stack **a, stack **b, char c)
+{
+	if (c == 'a' && *b)
+	{
+		push_helper(a, b);
+		write(1, "pa\n", 3);
+	}
+	else if (c == 'b' && *a)
+	{
+		push_helper(b, a);
+		write(1, "pb\n", 3);
+	}
 }

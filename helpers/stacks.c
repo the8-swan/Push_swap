@@ -44,10 +44,24 @@ stack *create_stack(int *arr,int c){
 	while (i < c)
 	{
 		stack	*node = create_node(arr[i]);
-		if(!node)
-			return NULL;
-		add_back(&head,node);
+		if (!node)
+			return (NULL);
+		node->position = i;
+		if (i <= c/2)
+			node->costb = i;
+		else
+			node -> costb = c - i;
+		add_back(&head, node);
 		i++;
 	}
-	return head;
+	return (head);
+}
+
+
+void	add_front(stack **lst, stack *new)
+{
+	if (!lst || !new || !*lst)
+		return ;
+	new -> next = *lst;
+	*lst = new;
 }
