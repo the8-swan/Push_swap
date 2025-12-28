@@ -14,28 +14,14 @@ typedef struct  stack
 	int num;
 	int	index;
 	int position;
-	//int	target;
+	int	target;
 	int costb;
 	int costa;
 	struct stack *next;
 
 	
 }stack;
-/*
-typedef struct s_node{
-	int				val;
-	int				ind;
-	struct s_node	*next;
-	struct s_node	*prev;
-} t_node;
 
-typedef struct s_stack{
-	struct s_node	*top;
-	struct s_node	*bottom;
-	int				size;
-} t_stack;
-
-*/
 
 
 char	**ft_split(char const *s, char c);
@@ -45,8 +31,8 @@ long	ft_atoi(const char *str);
 int	fill_arr(int *arr, char **ptr);
 int	ft_isdigit(int c);
 int	digits_counter(char **ptr);
-
-
+int is_sorted(stack	*a);
+int	stack_size(stack *a);
 
 stack	*before_lastnode(stack	*s);
 stack	*create_stack(int *arr,int c);
@@ -68,11 +54,9 @@ void	ft_rrotate(stack **a, stack **b);
 void	ft_rotate(stack **a, stack **b);
 void	quick_sort(int *arr, int start, int end);
 void	assign_index(stack *a, int *arr, int size);
-
-
-
-
-
+void	push_to_b(stack	**a, stack **b,	int c);
+void	update_position(stack *a);
+void	calculate_costs(stack **a,stack *tmp);
 
 
 

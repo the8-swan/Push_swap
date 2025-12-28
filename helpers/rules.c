@@ -100,3 +100,16 @@ void ft_push(stack **a, stack **b, char c)
 		write(1, "pb\n", 3);
 	}
 }
+
+
+void	push_to_b(stack	**a, stack **b,	int c)
+{
+	int i;
+
+	i = 0;
+	while (i < c)
+	{
+		ft_push(a, b, 'b');
+		i++;
+	}
+}

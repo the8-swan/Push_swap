@@ -129,14 +129,3 @@ long	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
-
-/*
-tuple {,}
-hamza 
-ihsan
-
-for test,v in tuple{
-	hamza.append(test)
-	ihsan.appen(v)
-}
-*/

@@ -46,11 +46,6 @@ stack *create_stack(int *arr,int c){
 		stack	*node = create_node(arr[i]);
 		if (!node)
 			return (NULL);
-		node->position = i;
-		if (i <= c/2)
-			node->costb = i;
-		else
-			node -> costb = c - i;
 		add_back(&head, node);
 		i++;
 	}
@@ -60,8 +55,13 @@ stack *create_stack(int *arr,int c){
 
 void	add_front(stack **lst, stack *new)
 {
-	if (!lst || !new || !*lst)
+	if (!lst || !new)
 		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
 	new -> next = *lst;
 	*lst = new;
 }

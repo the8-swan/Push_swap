@@ -51,5 +51,6 @@ void push_helper(stack **a, stack **b)
 	
 	first_node = *b;
 	*b = first_node -> next;
+	first_node->next = NULL;
 	add_front(a,first_node);
 }

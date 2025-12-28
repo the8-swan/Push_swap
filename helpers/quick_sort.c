@@ -39,3 +39,16 @@ void quick_sort(int *arr, int start, int end)
 		quick_sort(arr, p1 + 1, end);
 	}
 }
+
+
+
+int is_sorted(stack	*a)
+{
+	while(a->next)
+	{
+		if(a->num > (a->next)->num)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
