@@ -24,22 +24,22 @@ void	sort_two(stack	*a)
 
 
 
-void	positional_sort(stack **a , stack **b)
+void	positional_sort(stack **a , stack *b)
 {
 	stack *tmp;
 
 	tmp = *a;
-	while(*b)
+	while(b)
 	{
-		update_position(a);
+		update_position(*a);
 		update_position(b);
 		while (tmp)
 		{
-			calculate_costs(a, tmp);
-			tmp=tmp->next
+			calculate_costa(a,tmp);
+			tmp->costb = calculate_costb(b,tmp);
+			tmp=tmp->next;
 		}
-		
-		*b = (*b)->next;
+		b = b->next;
 	}
 }
 
@@ -57,15 +57,15 @@ void	push_swap(int	*arr, int c)
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
 	push_to_b(&a, &b, c - 3);
-	positional_sort(&a, &b);
-
+	positional_sort(&a, b);
+/*
 	while(a){
 		printf("%d and it's index is : %d it's position is %d \n",a->num,a->index,a->position);
 		a= a->next;
 	}
-	printf("************************\n");
+	printf("************************\n");*/
 	while(b){
-		printf("%d and it's index is : %d it's position is %d \n",b->num,b->index,b->position);
+		printf("%d and it's index is : %d it's position is %d , it's costb is : %d \n",b->num,b->index,b->position,b->costb);
 		b=b->next;
 	}
 

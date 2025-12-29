@@ -29,4 +29,3 @@ int main(int argc, char **argv)
 	push_swap(arr,c);
 	return (0);
 }
- 

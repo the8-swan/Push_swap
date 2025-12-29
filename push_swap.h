@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 
 
 
@@ -33,12 +34,11 @@ int	ft_isdigit(int c);
 int	digits_counter(char **ptr);
 int is_sorted(stack	*a);
 int	stack_size(stack *a);
+int find_target(stack *a, stack *tmp);
 
 stack	*before_lastnode(stack	*s);
 stack	*create_stack(int *arr,int c);
 stack	*last_node(stack	*head);
-
-
 
 void	add_back(stack **head, stack *new);
 void	add_front(stack **lst, stack *new);
@@ -56,9 +56,9 @@ void	quick_sort(int *arr, int start, int end);
 void	assign_index(stack *a, int *arr, int size);
 void	push_to_b(stack	**a, stack **b,	int c);
 void	update_position(stack *a);
-void	calculate_costs(stack **a,stack *tmp);
-
-
+void	calculate_costa(stack **a, stack *tmp);
+void	positional_sort(stack **a , stack *b);
+int	calculate_costb(stack *b, stack *tmp);
 
 
 #endif
