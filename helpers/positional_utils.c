@@ -4,17 +4,19 @@ int find_target(stack *a, stack *tmp)
 {
 	int index;
 	int position;
+	stack *current;
 
 	index = INT_MAX;
 	position = -1;
-	while (a)
+	current = a;
+	while (current)
 	{
-		if (a->index > tmp->index && a->index < index)
+		if (current->index > tmp->index && current->index < index)
 		{
-			index = a->index;
-			position = a->position;
+			index = current->index;
+			position = current->position;
 		}
-		a = a->next;
+		current = current->next;
 	}
 	if (position < 0)
 	{
@@ -34,10 +36,13 @@ int find_target(stack *a, stack *tmp)
 void calculate_costa(stack **a, stack *tmp)
 {
 	int a_size;
-	int target_position;
 
 	a_size = stack_size(*a);
-	target_position = find_target(*a, tmp);
+	tmp->target = find_target(*a, tmp);
+	if (tmp->target <= a_size / 2)
+		tmp->costa = tmp->target;
+	else
+		tmp->costa = -(a_size - tmp->target);
 }
 
 int calculate_costb(stack *b, stack *tmp)

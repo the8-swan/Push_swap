@@ -1,4 +1,5 @@
 #include "../push_swap.h"
+static int v =0;
 
 
 void	sort_two(stack	*a)
@@ -9,36 +10,93 @@ void	sort_two(stack	*a)
 	}
 }
 
+static stack	*find_min_cost(stack *b)
+{
+	stack *cheapest;
+	int sum;
 
-/*
-  // Calculate for EVERY node in B
-    for each node in b:
-        calculate_costs(node);
-    
-    // Find the one with MINIMUM cost
-    cheapest = find_min_cost(b);
-    
-    // Move ONLY that one
-    move_to_a(cheapest);
-*/
+	cheapest = NULL;
+	sum = INT_MAX;
+	while(b)
+	{
+		if(b->costa + b->costb < sum)
+		{
+			sum = b->costa + b->costb;
+			cheapest = b; 
+		}
+		b = b->next;
+	}
+	return cheapest;
+}
 
+static void move_to_a(stack **a , stack **b, stack *cheapest)
+{
+		while(cheapest->costa < 0 && cheapest->costb < 0)
+		{
+			ft_rrotate(a,b);
+			(cheapest->costa)++;
+			(cheapest->costb)++;
+			v++;
 
+		}
+		while(cheapest->costa > 0 && cheapest->costb > 0)
+		{
+			ft_rotate(a,b);
+			(cheapest->costa)--;
+			(cheapest->costb)--;
+			v++;
+
+		}
+		while (cheapest->costa > 0)
+		{
+			ft_rotate(a,NULL);
+			(cheapest->costa)--;
+			(cheapest->costb)--;
+			v++;
+		}
+		while (cheapest->costa < 0)
+		{
+			ft_rotate(a,NULL);
+			(cheapest->costa)++;
+			(cheapest->costb)++;
+			v++;
+		}
+		while (cheapest->costb > 0)
+		{
+			ft_rotate(NULL,b);
+			(cheapest->costb)--;
+			(cheapest->costb)--;
+			v++;
+		}
+		while (cheapest->costb < 0)
+		{
+			ft_rotate(NULL,b);
+			(cheapest->costb)++;
+			(cheapest->costb);
+			v++;
+		}
+}
+	
 
 void	positional_sort(stack **a , stack *b)
 {
 	stack *tmp;
+	stack *cheapest;
 
-	tmp = *a;
 	while(b)
 	{
+		tmp = b;
 		update_position(*a);
 		update_position(b);
 		while (tmp)
 		{
-			calculate_costa(a,tmp);
+			 calculate_costa(a,tmp);
 			tmp->costb = calculate_costb(b,tmp);
 			tmp=tmp->next;
 		}
+		tmp = b;
+		cheapest = find_min_cost(tmp);
+		move_to_a(a,&b,cheapest);
 		b = b->next;
 	}
 }
@@ -64,9 +122,12 @@ void	push_swap(int	*arr, int c)
 		a= a->next;
 	}
 	printf("************************\n");*/
-	while(b){
-		printf("%d and it's index is : %d it's position is %d , it's costb is : %d \n",b->num,b->index,b->position,b->costb);
+
+/*	while(b){
+		printf("%d and it's costa is : %d it's target vostb is %d , it's target is : %d \n",b->num,b->costa,b->costb,b->target);
 		b=b->next;
 	}
+	*/
+	printf("%d : ",v);
 
 }

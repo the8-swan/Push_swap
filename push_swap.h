@@ -35,6 +35,10 @@ int	digits_counter(char **ptr);
 int is_sorted(stack	*a);
 int	stack_size(stack *a);
 int find_target(stack *a, stack *tmp);
+int	calculate_costb(stack *b, stack *tmp);
+void	calculate_costa(stack **a, stack *tmp);
+
+
 
 stack	*before_lastnode(stack	*s);
 stack	*create_stack(int *arr,int c);
@@ -56,9 +60,7 @@ void	quick_sort(int *arr, int start, int end);
 void	assign_index(stack *a, int *arr, int size);
 void	push_to_b(stack	**a, stack **b,	int c);
 void	update_position(stack *a);
-void	calculate_costa(stack **a, stack *tmp);
 void	positional_sort(stack **a , stack *b);
-int	calculate_costb(stack *b, stack *tmp);
 
 
 #endif
