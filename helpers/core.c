@@ -19,9 +19,9 @@ static stack	*find_min_cost(stack *b)
 	sum = INT_MAX;
 	while(b)
 	{
-		if(b->costa + b->costb < sum)
+		if(ft_abs(b->costa) + ft_abs(b->costb < sum))
 		{
-			sum = b->costa + b->costb;
+			sum = ft_abs(b->costa) + ft_abs(b->costb);
 			cheapest = b; 
 		}
 		b = b->next;
@@ -51,34 +51,31 @@ static void move_to_a(stack **a , stack **b, stack *cheapest)
 		{
 			ft_rotate(a,NULL);
 			(cheapest->costa)--;
-			(cheapest->costb)--;
 			v++;
 		}
 		while (cheapest->costa < 0)
 		{
-			ft_rotate(a,NULL);
+			ft_rrotate(a,NULL);
 			(cheapest->costa)++;
-			(cheapest->costb)++;
 			v++;
 		}
 		while (cheapest->costb > 0)
 		{
 			ft_rotate(NULL,b);
 			(cheapest->costb)--;
-			(cheapest->costb)--;
 			v++;
 		}
 		while (cheapest->costb < 0)
 		{
-			ft_rotate(NULL,b);
+			ft_rrotate(NULL,b);
 			(cheapest->costb)++;
-			(cheapest->costb);
 			v++;
 		}
+		ft_push(a, b, 'a');
 }
 	
 
-void	positional_sort(stack **a , stack *b)
+void	positional_sort(stack *a , stack *b)
 {
 	stack *tmp;
 	stack *cheapest;
@@ -86,17 +83,17 @@ void	positional_sort(stack **a , stack *b)
 	while(b)
 	{
 		tmp = b;
-		update_position(*a);
+		update_position(a);
 		update_position(b);
 		while (tmp)
 		{
-			 calculate_costa(a,tmp);
+			calculate_costa(a,tmp);
 			tmp->costb = calculate_costb(b,tmp);
 			tmp=tmp->next;
 		}
 		tmp = b;
 		cheapest = find_min_cost(tmp);
-		move_to_a(a,&b,cheapest);
+		move_to_a(&a,&b,cheapest);
 		b = b->next;
 	}
 }
@@ -115,19 +112,16 @@ void	push_swap(int	*arr, int c)
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
 	push_to_b(&a, &b, c - 3);
-	positional_sort(&a, b);
-/*
-	while(a){
+	positional_sort(a, b);
+	/*while(a){
 		printf("%d and it's index is : %d it's position is %d \n",a->num,a->index,a->position);
 		a= a->next;
 	}
-	printf("************************\n");*/
+	printf("************************\n");
 
-/*	while(b){
+	while(b){
 		printf("%d and it's costa is : %d it's target vostb is %d , it's target is : %d \n",b->num,b->costa,b->costb,b->target);
 		b=b->next;
-	}
-	*/
-	printf("%d : ",v);
+	}*/
 
 }

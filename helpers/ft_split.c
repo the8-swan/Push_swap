@@ -129,3 +129,11 @@ long	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
+
+
+int	ft_abs(int number)
+{
+	if(number < 0)
+		return (-number);
+	return (number);
+}

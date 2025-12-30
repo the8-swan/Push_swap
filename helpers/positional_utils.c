@@ -33,12 +33,12 @@ int find_target(stack *a, stack *tmp)
 	return (position);
 }
 
-void calculate_costa(stack **a, stack *tmp)
+void calculate_costa(stack *a, stack *tmp)
 {
 	int a_size;
 
-	a_size = stack_size(*a);
-	tmp->target = find_target(*a, tmp);
+	a_size = stack_size(a);
+	tmp->target = find_target(a, tmp);
 	if (tmp->target <= a_size / 2)
 		tmp->costa = tmp->target;
 	else
