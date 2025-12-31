@@ -1,5 +1,3 @@
-
-
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -22,7 +20,6 @@ typedef struct  stack
 
 	
 }stack;
-
 
 
 char	**ft_split(char const *s, char c);
@@ -61,7 +58,8 @@ void	quick_sort(int *arr, int start, int end);
 void	assign_index(stack *a, int *arr, int size);
 void	push_to_b(stack	**a, stack **b,	int c);
 void	update_position(stack *a);
-void	positional_sort(stack **a , stack **b);
-
+void	positional_sort(stack **a , stack **b, int c);
+void	sort_three(stack **a);
+void	rotate_to_position(stack **a);
 
 #endif

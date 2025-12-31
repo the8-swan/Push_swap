@@ -57,3 +57,48 @@ int calculate_costb(stack *b, stack *tmp)
 	else
 		return (-(b_size - tmp->position));
 }
+
+void	sort_three(stack **a)
+{
+	stack *head;
+	stack *next;
+
+	head = *a;
+	next = (*a)->next;
+	if(head->index > next->index && head->index > (next->next)->index )
+		ft_rotate(a, NULL);
+	if(next->index > head->index && next->index > (next->next)->index )
+		ft_rrotate(a,NULL);
+	if((*a)->index > ((*a)->next)->index)
+		ft_swap(*a,NULL);
+}
+
+void	rotate_to_position(stack **a)
+{
+	int size_a;
+	int i;
+	stack *tmp;
+
+	size_a = stack_size(*a);
+	i = 0;
+	tmp = *a;
+	while (tmp)
+	{
+		if (tmp->index == 0)
+			break;
+		tmp = tmp -> next;
+		i++;
+	}
+	if (i > size_a / 2)
+		i = - (size_a - i);
+	while (i > 0)
+	{
+		ft_rotate(a, NULL);
+		i--;
+	}
+	while (i < 0)
+	{
+		ft_rrotate(a, NULL);
+		i++;
+	}
+}
