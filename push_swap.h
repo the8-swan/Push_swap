@@ -61,7 +61,7 @@ void	quick_sort(int *arr, int start, int end);
 void	assign_index(stack *a, int *arr, int size);
 void	push_to_b(stack	**a, stack **b,	int c);
 void	update_position(stack *a);
-void	positional_sort(stack *a , stack *b);
+void	positional_sort(stack **a , stack **b);
 
 
 #endif

@@ -31,60 +31,52 @@ void ft_swap(stack *a, stack *b)
 
 void ft_rrotate(stack **a, stack **b)
 {
-	int c;
+	int ca;
+	int cb;
 
-	c = 0;
-	if (a!=NULL && (*a)->next)
+	ca = 0;
+	cb = 0;
+	if (a!=NULL && *a && (*a)->next)
 	{
 		rrotate_helper(a);
-		if (!b)
-		{
-			write(1, "rra\n", 4);
-			return;
-		}
-		c++;
+		ca = 1;
 	}
-	if (b!=NULL && (*b)->next)
+	if (b!=NULL && *b && (*b)->next)
 	{
 		rrotate_helper(b);
-		if (!a)
-		{
-			write(1, "rrb\n", 4);
-			return;
-		}
-		c++;
+		cb = 1;
 	}
-	if (c == 2)
+	if (ca && cb)
 		write(1, "rrr\n", 4);
+	else if (ca)
+		write(1, "rra\n", 4);
+	else
+		write(1, "rrb\n", 4);
 }
 
 void ft_rotate(stack **a, stack **b)
 {
-	int c;
+	int ca;
+	int cb;
 
-	c = 0;
-	if (a != NULL && (*a)->next)
+	ca = 0;
+	cb = 0;
+	if (a!=NULL && *a && (*a)->next)
 	{
 		rotate_helper(a);
-		if (!b)
-		{
-			write(1, "ra\n", 3);
-			return;
-		}
-		c++;
+		ca = 1;
 	}
-	if (b != NULL && (*b)->next)
+	if (b!=NULL && *b && (*b)->next)
 	{
 		rotate_helper(b);
-		if (!a)
-		{
-			write(1, "rb\n", 3);
-			return;
-		}
-		c++;
+		cb = 1;
 	}
-	if (c == 2)
+	if (ca && cb)
 		write(1, "rr\n", 3);
+	else if (ca)
+		write(1, "ra\n", 3);
+	else
+		write(1, "rb\n", 3);
 }
 
 void ft_push(stack **a, stack **b, char c)

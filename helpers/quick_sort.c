@@ -8,7 +8,6 @@ static void swap(int *a, int *b)
 	*a = c;
 }
 
-
 static int partitions(int *arr, int start, int end)
 {
 	int i;
@@ -39,8 +38,6 @@ void quick_sort(int *arr, int start, int end)
 		quick_sort(arr, p1 + 1, end);
 	}
 }
-
-
 
 int is_sorted(stack	*a)
 {
