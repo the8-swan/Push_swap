@@ -1,6 +1,7 @@
 #include "../push_swap.h"
 
-static int print_error(){
+static int print_error()
+{
 	write(1, "Error\n", 6);
 	return -1;
 }
@@ -25,45 +26,38 @@ static int is_unique(int value, int *arr, int index)
 	return 1;
 }
 
-int fill_arr(int *arr, char **ptr)
+int fill_arr(int *arr, char ***ptr)
 {
-	int	i;
-	int	j;
-	long	number;
-	
-	number = 0;
+	int i;
+	int in;
+	int j;
+	int z;
+
+	in = 0;
+	z = 0;
 	i = 0;
 	j = 0;
-	while (ptr[i])
+	while (ptr[z])
 	{
-		while (ptr[i][j])
+		while (ptr[z][i])
 		{
-			if (!ft_isdigit(ptr[i][j]))
+			while (ptr[z][i][j])
+			{
+				if (!ft_isdigit(ptr[z][i][j]))
+					return (write(1, "Error\n", 6), -1);
+				j++;
+			}
+			arr[in] = ft_atoi(ptr[z][i]);
+			if (arr[in] > INT_MAX || arr[in] < INT_MIN)
 				return (write(1, "Error\n", 6), -1);
-			j++;
+			if (!is_unique(ft_atoi(ptr[z][i]), arr, i))
+				return (write(1, "Error\n", 6), -1);
+			j = 0;
+			i++;
+			in++;
 		}
-		number = ft_atoi(ptr[i]);
-		if (number > 2147483647 || number < -2147483648)
-				return (write(1, "Error\n", 6), -1);
-		if (!is_unique(ft_atoi(ptr[i]), arr, i))
-				return (write(1, "Error\n", 6), -1);
-		arr[i] = ft_atoi(ptr[i]);
-		j = 0;
-		i++;
+		i = 0;
+		z++;
 	}
 	return (i);
 }
-
-void fill_ptr(char **ptr, char **argv, int argc) 
-{
-	int i ;
-
-	i = 0;
-	while (i < argc - 1)
-	{
-		ptr[i] = argv[i + 1];
-		i++;
-	}
-	ptr[i] = NULL;
-}
- 

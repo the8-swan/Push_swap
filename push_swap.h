@@ -26,7 +26,7 @@ char	**ft_split(char const *s, char c);
 
 long	ft_atoi(const char *str);
 
-int	fill_arr(int *arr, char **ptr);
+int	fill_arr(int *arr, char ***ptr);
 int	ft_isdigit(int c);
 int	digits_counter(char **ptr);
 int is_sorted(stack	*a);
@@ -49,7 +49,6 @@ void	rrotate_helper(stack **a);
 void	swap_helper(stack *head);
 void	ft_push(stack **a, stack **b, char c);
 void	push_helper(stack **a, stack **b);
-void	fill_ptr(char **ptr, char **argv, int argc);
 void	push_swap(int	*arr, int c);
 void	ft_swap(stack *a, stack *b);
 void	ft_rrotate(stack **a, stack **b);

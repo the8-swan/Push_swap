@@ -1,33 +1,29 @@
 #include "push_swap.h"
 
-
 int main(int argc, char **argv)
 {
-	char	**ptr;
-	int		c;
-	int		*arr;
+	char ***ptr;
+	int i;
+	int counter;
+	int *arr;
 
-	c = 0;
-	if (argc <= 1)
-		return (write(1, "Error\n", 6), 0);
-	if (argc > 2)
+	i = 0;
+	counter = 0;
+	ptr = malloc(sizeof(char **) * argc);
+	if (!ptr)
+		return 0;
+	while (i + 1 < argc)
 	{
-		ptr = malloc(sizeof(char *) * argc );
-		if (!ptr)
+		ptr[i] = ft_split(argv[i + 1],' ');
+		if (!ptr[i])
 			return (0);
-		fill_ptr(ptr, argv, argc);
-	}else
-	{
-		ptr = ft_split(argv[1], ' ');
-		arr = malloc(sizeof(int) * digits_counter(ptr));
-		if (!arr)
-			return (0);
+		counter += digits_counter(ptr[i]);
+		i++;
 	}
-	arr = malloc(sizeof(int) * digits_counter(ptr));
-	c = fill_arr(arr, ptr);
-	if (c < 0)
-		return (0);
-	push_swap(arr,c);
+	arr = malloc(sizeof(int) * counter);
+	if (!arr)
+			return (0);
+	fill_arr(arr, ptr);
+	push_swap(arr,counter);
 	return (0);
 }
- 

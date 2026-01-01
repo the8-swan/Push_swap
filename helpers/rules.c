@@ -96,12 +96,27 @@ void ft_push(stack **a, stack **b, char c)
 
 void	push_to_b(stack	**a, stack **b,	int c)
 {
-	int i;
+	int pushed;
+	int bign;
 
-	i = 0;
-	while (i < c)
+	pushed = 0;
+	bign = c - 3;
+	while(pushed < c - 3)
 	{
-		ft_push(a, b, 'b');
-		i++;
+		if((*a)->index <= 2)
+			ft_rotate(a,NULL);
+		else if(((*a)->index > 2 && (*a)->index < c/2 ) && bign > c/2 )
+		{
+			ft_rotate(a,NULL);
+		}else if((*a)->index < c/2  && bign < c/2 && bign > c/2)
+		{
+			ft_push(a,b,'b');
+			pushed++ ;
+			bign--;
+		}else{
+			ft_push(a,b,'b');
+			pushed++ ;
+			bign--;
+		}
 	}
 }

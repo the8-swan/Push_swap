@@ -15,7 +15,7 @@ static stack *find_min_cost(stack *b)
 	sum = INT_MAX;
 	while (b)
 	{
-		if (ft_abs(b->costa) + ft_abs(b->costb < sum))
+		if (ft_abs(b->costa) + ft_abs(b->costb ) < sum)
 		{
 			sum = ft_abs(b->costa) + ft_abs(b->costb);
 			cheapest = b;
@@ -112,14 +112,14 @@ void push_swap(int *arr, int c)
 	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
-	push_to_b(&a, &b, c - 3);
+	push_to_b(&a, &b, c);
 	sort_three(&a);
 	positional_sort(&a, &b, c - 3);
 	rotate_to_position(&a);
-	while (a)
-	{
-		printf("%d \n", a->num);
-		a = a->next;
-	}
+	//while (a)
+	//{
+	//	printf("%d \n", a->num);
+	//	a = a->next;
+	//}
 	
 }
