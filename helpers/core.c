@@ -1,5 +1,5 @@
 #include "../push_swap.h"
-int v =0;
+int v = 0;
 void sort_two(stack *a)
 {
 	if (a->num > (a->next)->num)
@@ -25,48 +25,48 @@ static stack *find_min_cost(stack *b)
 	return (cheapest);
 }
 
-static void move_to_a(stack **a , stack **b, stack *cheapest)
+static void move_to_a(stack **a, stack **b, stack *cheapest)
 {
-	if (!b || !*b || !cheapest)  
-        return;
+	if (!b || !*b || !cheapest)
+		return;
 	int costa;
 	int costb;
 
 	costa = cheapest->costa;
 	costb = cheapest->costb;
-	while(costa < 0 && costb < 0)
-		{
-			ft_rrotate(a,b);
-			(costa)++;
-			(costb)++;
-		}
-		while(costa > 0 && costb > 0)
-		{
-			ft_rotate(a,b);
-			(costa)--;
-			(costb)--;
-		}
-		while (costa > 0)
-		{
-			ft_rotate(a,NULL);
-			(costa)--;
-		}
-		while (costa < 0)
-		{
-			ft_rrotate(a,NULL);
-			(costa)++;
-		}
-		while (costb > 0)
-		{
-			ft_rotate(NULL,b);
-			(costb)--;
-		}
-		while (costb < 0)
-		{
-			ft_rrotate(NULL,b);
-			(costb)++;
-		}
-		ft_push(a, b, 'a');
+	while (costa < 0 && costb < 0)
+	{
+		ft_rrotate(a, b);
+		(costa)++;
+		(costb)++;
+	}
+	while (costa > 0 && costb > 0)
+	{
+		ft_rotate(a, b);
+		(costa)--;
+		(costb)--;
+	}
+	while (costa > 0)
+	{
+		ft_rotate(a, NULL);
+		(costa)--;
+	}
+	while (costa < 0)
+	{
+		ft_rrotate(a, NULL);
+		(costa)++;
+	}
+	while (costb > 0)
+	{
+		ft_rotate(NULL, b);
+		(costb)--;
+	}
+	while (costb < 0)
+	{
+		ft_rrotate(NULL, b);
+		(costb)++;
+	}
+	ft_push(a, b, 'a');
 }
 
 void positional_sort(stack **a, stack **b, int c)
@@ -105,15 +105,21 @@ void push_swap(int *arr, int c)
 	b = NULL;
 	if (is_sorted(a))
 		return;
+	if (c == 2)
+	{
+		sort_two(a);
+		return;
+	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
 	push_to_b(&a, &b, c - 3);
 	sort_three(&a);
 	positional_sort(&a, &b, c - 3);
 	rotate_to_position(&a);
-	while (!a)
+	while (a)
 	{
-		printf("%d\n", a->num);
+		printf("%d \n", a->num);
 		a = a->next;
 	}
+	
 }

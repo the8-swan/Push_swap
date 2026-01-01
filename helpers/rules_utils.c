@@ -37,11 +37,15 @@ void swap_helper(stack *head)
 {
 	stack *next;
 	int val;
+	int index;
 
 	next = head->next;
 	val = next->num;
+	index = next->index;
 	next->num = head->num;
+	next->index = head->index;
 	head->num = val;
+	head->index = index;
 }
 
 

@@ -18,6 +18,7 @@ int find_target(stack *a, stack *tmp)
 		}
 		current = current->next;
 	}
+
 	if (position < 0)
 	{
 		while (a)
