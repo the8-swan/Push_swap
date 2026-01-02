@@ -18,9 +18,7 @@ typedef struct  stack
 	int costa;
 	struct stack *next;
 
-	
 }stack;
-
 
 char	**ft_split(char const *s, char c);
 
@@ -34,6 +32,9 @@ int	stack_size(stack *a);
 int find_target(stack *a, stack *tmp);
 int	calculate_costb(stack *b, stack *tmp);
 int	ft_abs(int number);
+int is_valid(char *ptr);
+int	ft_isdigit(int c);
+
 void	calculate_costa(stack *a, stack *tmp);
 
 
@@ -60,5 +61,6 @@ void	update_position(stack *a);
 void	positional_sort(stack **a , stack **b, int c);
 void	sort_three(stack **a);
 void	rotate_to_position(stack **a);
+
 
 #endif

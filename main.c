@@ -8,7 +8,6 @@ int main(int argc, char **argv)
 	int *arr;
 
 	i = 0;
-	counter = 0;
 	ptr = malloc(sizeof(char **) * argc);
 	if (!ptr)
 		return 0;
@@ -23,7 +22,9 @@ int main(int argc, char **argv)
 	arr = malloc(sizeof(int) * counter);
 	if (!arr)
 			return (0);
-	fill_arr(arr, ptr);
+	counter = fill_arr(arr, ptr);
+	if(counter == -1)
+		return (0);
 	push_swap(arr,counter);
 	return (0);
 }

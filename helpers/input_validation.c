@@ -1,9 +1,19 @@
 #include "../push_swap.h"
 
-static int print_error()
+int is_valid(char *ptr)
 {
-	write(1, "Error\n", 6);
-	return -1;
+	int i =0;
+
+	i = 0;
+	if(i == 0 && (ptr[i] == '-' || ptr[i] == '+'))
+		i++;
+	while(ptr[i] && ft_isdigit(ptr[i])){
+		i++;
+	}
+	if(ptr[i] == '\0')
+		return (i);
+	else
+		return (0);
 }
 
 int digits_counter(char **ptr)
@@ -12,6 +22,14 @@ int digits_counter(char **ptr)
 	while (ptr[c] != NULL)
 		c++;
 	return c;
+}
+
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (c);
+	return (0);
 }
 
 static int is_unique(int value, int *arr, int index)
@@ -30,29 +48,22 @@ int fill_arr(int *arr, char ***ptr)
 {
 	int i;
 	int in;
-	int j;
 	int z;
 
 	in = 0;
 	z = 0;
 	i = 0;
-	j = 0;
 	while (ptr[z])
 	{
 		while (ptr[z][i])
 		{
-			while (ptr[z][i][j])
-			{
-				if (!ft_isdigit(ptr[z][i][j]))
-					return (write(1, "Error\n", 6), -1);
-				j++;
-			}
+			if(!is_valid(ptr[z][i]))
+				return (write(1, "Error\n", 6), -1);
 			arr[in] = ft_atoi(ptr[z][i]);
 			if (arr[in] > INT_MAX || arr[in] < INT_MIN)
 				return (write(1, "Error\n", 6), -1);
 			if (!is_unique(ft_atoi(ptr[z][i]), arr, i))
 				return (write(1, "Error\n", 6), -1);
-			j = 0;
 			i++;
 			in++;
 		}

@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/01 21:38:33 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/01 22:03:10 by obakri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
-int v = 0;
-void sort_two(stack *a)
+
+void	sort_two(stack *a)
 {
 	if (a->num > (a->next)->num)
 		ft_swap(a, NULL);
 }
 
-static stack *find_min_cost(stack *b)
+static stack	*find_min_cost(stack *b)
 {
-	stack *cheapest;
-	int sum;
+	stack	*cheapest;
+	int		sum;
 
 	cheapest = NULL;
 	sum = INT_MAX;
 	while (b)
 	{
-		if (ft_abs(b->costa) + ft_abs(b->costb ) < sum)
+		if (ft_abs(b->costa) + ft_abs(b->costb) < sum)
 		{
 			sum = ft_abs(b->costa) + ft_abs(b->costb);
 			cheapest = b;
@@ -25,13 +37,13 @@ static stack *find_min_cost(stack *b)
 	return (cheapest);
 }
 
-static void move_to_a(stack **a, stack **b, stack *cheapest)
+static void	move_to_a(stack **a, stack **b, stack *cheapest)
 {
-	if (!b || !*b || !cheapest)
-		return;
-	int costa;
-	int costb;
+	int	costa;
+	int	costb;
 
+	if (!b || !*b || !cheapest)
+		return ;
 	costa = cheapest->costa;
 	costb = cheapest->costb;
 	while (costa < 0 && costb < 0)
@@ -69,11 +81,11 @@ static void move_to_a(stack **a, stack **b, stack *cheapest)
 	ft_push(a, b, 'a');
 }
 
-void positional_sort(stack **a, stack **b, int c)
+void	positional_sort(stack **a, stack **b, int c)
 {
-	stack *tmp;
-	stack *cheapest;
-	int i;
+	stack	*tmp;
+	stack	*cheapest;
+	int		i;
 
 	i = 0;
 	while (i < c)
@@ -94,21 +106,21 @@ void positional_sort(stack **a, stack **b, int c)
 	}
 }
 
-void push_swap(int *arr, int c)
+void	push_swap(int *arr, int c)
 {
-	stack *a;
-	stack *b;
-	int i;
+	stack	*a;
+	stack	*b;
+	int		i;
 
 	i = 0;
 	a = create_stack(arr, c);
 	b = NULL;
 	if (is_sorted(a))
-		return;
+		return ;
 	if (c == 2)
 	{
 		sort_two(a);
-		return;
+		return ;
 	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
@@ -116,10 +128,4 @@ void push_swap(int *arr, int c)
 	sort_three(&a);
 	positional_sort(&a, &b, c - 3);
 	rotate_to_position(&a);
-	//while (a)
-	//{
-	//	printf("%d \n", a->num);
-	//	a = a->next;
-	//}
-	
 }

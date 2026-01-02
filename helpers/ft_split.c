@@ -96,15 +96,6 @@ char	**ft_split(char const *s, char c)
 	ptr[i] = NULL;
 	return (ptr);
 }
-
-
-int	ft_isdigit(int c)
-{
-	if ((c >= '0' && c <= '9') || (c == '-' || c== '+'))
-		return (c);
-	return (0);
-}
-
 long	ft_atoi(const char *str)
 {
 	size_t	i;
