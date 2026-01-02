@@ -62,7 +62,7 @@ int fill_arr(int *arr, char ***ptr)
 			arr[in] = ft_atoi(ptr[z][i]);
 			if (arr[in] > INT_MAX || arr[in] < INT_MIN)
 				return (write(1, "Error\n", 6), -1);
-			if (!is_unique(ft_atoi(ptr[z][i]), arr, i))
+			if (!is_unique(arr[in], arr, in))
 				return (write(1, "Error\n", 6), -1);
 			i++;
 			in++;
@@ -70,5 +70,5 @@ int fill_arr(int *arr, char ***ptr)
 		i = 0;
 		z++;
 	}
-	return (i);
+	return (in);
 }

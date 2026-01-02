@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/02 16:19:44 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/02 16:47:59 by obakri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void ft_swap(stack *a, stack *b)
+void	ft_swap(stack *a, stack *b)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	if (a && a->next != NULL)
@@ -11,7 +23,7 @@ void ft_swap(stack *a, stack *b)
 		if (!b)
 		{
 			write(1, "sa\n", 3);
-			return;
+			return ;
 		}
 		c++;
 	}
@@ -21,7 +33,7 @@ void ft_swap(stack *a, stack *b)
 		if (!a)
 		{
 			write(1, "sb\n", 3);
-			return;
+			return ;
 		}
 		c++;
 	}
@@ -29,19 +41,19 @@ void ft_swap(stack *a, stack *b)
 		write(1, "ss\n", 3);
 }
 
-void ft_rrotate(stack **a, stack **b)
+void	ft_rrotate(stack **a, stack **b)
 {
-	int ca;
-	int cb;
+	int	ca;
+	int	cb;
 
 	ca = 0;
 	cb = 0;
-	if (a!=NULL && *a && (*a)->next)
+	if (a != NULL && *a && (*a)->next)
 	{
 		rrotate_helper(a);
 		ca = 1;
 	}
-	if (b!=NULL && *b && (*b)->next)
+	if (b != NULL && *b && (*b)->next)
 	{
 		rrotate_helper(b);
 		cb = 1;
@@ -54,19 +66,19 @@ void ft_rrotate(stack **a, stack **b)
 		write(1, "rrb\n", 4);
 }
 
-void ft_rotate(stack **a, stack **b)
+void	ft_rotate(stack **a, stack **b)
 {
-	int ca;
-	int cb;
+	int	ca;
+	int	cb;
 
 	ca = 0;
 	cb = 0;
-	if (a!=NULL && *a && (*a)->next)
+	if (a != NULL && *a && (*a)->next)
 	{
 		rotate_helper(a);
 		ca = 1;
 	}
-	if (b!=NULL && *b && (*b)->next)
+	if (b != NULL && *b && (*b)->next)
 	{
 		rotate_helper(b);
 		cb = 1;
@@ -79,7 +91,7 @@ void ft_rotate(stack **a, stack **b)
 		write(1, "rb\n", 3);
 }
 
-void ft_push(stack **a, stack **b, char c)
+void	ft_push(stack **a, stack **b, char c)
 {
 	if (c == 'a' && *b)
 	{
@@ -90,33 +102,5 @@ void ft_push(stack **a, stack **b, char c)
 	{
 		push_helper(b, a);
 		write(1, "pb\n", 3);
-	}
-}
-
-
-void	push_to_b(stack	**a, stack **b,	int c)
-{
-	int pushed;
-	int bign;
-
-	pushed = 0;
-	bign = c - 3;
-	while(pushed < c - 3)
-	{
-		if((*a)->index <= 2)
-			ft_rotate(a,NULL);
-		else if(((*a)->index > 2 && (*a)->index < c/2 ) && bign > c/2 )
-		{
-			ft_rotate(a,NULL);
-		}else if((*a)->index < c/2  && bign < c/2 && bign > c/2)
-		{
-			ft_push(a,b,'b');
-			pushed++ ;
-			bign--;
-		}else{
-			ft_push(a,b,'b');
-			pushed++ ;
-			bign--;
-		}
 	}
 }

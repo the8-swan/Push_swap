@@ -61,6 +61,8 @@ void	update_position(stack *a);
 void	positional_sort(stack **a , stack **b, int c);
 void	sort_three(stack **a);
 void	rotate_to_position(stack **a);
+void	free_list(stack **stack);
+
 
 
 #endif

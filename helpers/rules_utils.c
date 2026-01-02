@@ -1,43 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/02 16:48:26 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/02 16:57:33 by obakri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
+stack	*before_lastnode(stack	*s)
+{
+	stack	*last_node;
 
-stack	*before_lastnode(stack	*s){
-	stack *last_node;
-
-	while((s->next)->next)
-		s=s->next;
+	while ((s->next)->next)
+		s = s->next;
 	last_node = s->next;
 	s->next = NULL;
-	return last_node;	
+	return (last_node);
 }
 
 void	rotate_helper(stack **a)
 {
-	stack *next_node;
+	stack	*next_node;
 	stack	*first_node;
 
 	next_node = (*a)->next;
 	first_node = *a;
 	first_node->next = NULL;
 	*a = next_node;
-	add_back(a,first_node);
+	add_back(a, first_node);
 }
 
 void	rrotate_helper(stack **a)
 {
-	stack *last_node;
+	stack	*last_node;
 
 	last_node = before_lastnode(*a);
 	last_node->next = *a;
 	*a = last_node;
 }
 
-
-void swap_helper(stack *head)
+void	swap_helper(stack *head)
 {
-	stack *next;
-	int val;
-	int index;
+	stack	*next;
+	int		val;
+	int		index;
 
 	next = head->next;
 	val = next->num;
@@ -48,13 +59,12 @@ void swap_helper(stack *head)
 	head->index = index;
 }
 
-
-void push_helper(stack **a, stack **b)
+void	push_helper(stack **a, stack **b)
 {
 	stack	*first_node;
-	
+
 	first_node = *b;
 	*b = first_node -> next;
 	first_node->next = NULL;
-	add_front(a,first_node);
+	add_front(a, first_node);
 }

@@ -12,16 +12,16 @@
 
 #include "../push_swap.h"
 
-void	sort_two(stack *a)
+void sort_two(stack *a)
 {
 	if (a->num > (a->next)->num)
 		ft_swap(a, NULL);
 }
 
-static stack	*find_min_cost(stack *b)
+static stack *find_min_cost(stack *b)
 {
-	stack	*cheapest;
-	int		sum;
+	stack *cheapest;
+	int sum;
 
 	cheapest = NULL;
 	sum = INT_MAX;
@@ -37,13 +37,13 @@ static stack	*find_min_cost(stack *b)
 	return (cheapest);
 }
 
-static void	move_to_a(stack **a, stack **b, stack *cheapest)
+static void move_to_a(stack **a, stack **b, stack *cheapest)
 {
-	int	costa;
-	int	costb;
+	int costa;
+	int costb;
 
 	if (!b || !*b || !cheapest)
-		return ;
+		return;
 	costa = cheapest->costa;
 	costb = cheapest->costb;
 	while (costa < 0 && costb < 0)
@@ -81,51 +81,61 @@ static void	move_to_a(stack **a, stack **b, stack *cheapest)
 	ft_push(a, b, 'a');
 }
 
-void	positional_sort(stack **a, stack **b, int c)
+void positional_sort(stack **a, stack **b, int c)
 {
-	stack	*tmp;
-	stack	*cheapest;
-	int		i;
+	stack *tmp;
+	stack *cheapest;
+	int i;
 
 	i = 0;
 	while (i < c)
 	{
 		tmp = *b;
-		update_position(*a);
-		update_position(*b);
+		 	update_position(*a);
+		 	update_position(*b);
 		while (tmp)
-		{
-			calculate_costa(*a, tmp);
-			tmp->costb = calculate_costb(*b, tmp);
-			tmp = tmp->next;
-		}
-		tmp = *b;
-		cheapest = find_min_cost(tmp);
-		move_to_a(a, b, cheapest);
+		 	{
+		 		calculate_costa(*a, tmp);
+		 		tmp->costb = calculate_costb(*b, tmp);
+		 		tmp = tmp->next;
+		 	}
+		 	tmp = *b;
+		 	cheapest = find_min_cost(tmp);
+		 	move_to_a(a, b, cheapest);
 		i++;
 	}
 }
 
-void	push_swap(int *arr, int c)
+void push_swap(int *arr, int c)
 {
-	stack	*a;
-	stack	*b;
-	int		i;
+	stack *a;
+	stack *b;
+	int i;
 
 	i = 0;
 	a = create_stack(arr, c);
 	b = NULL;
 	if (is_sorted(a))
-		return ;
+		return;
 	if (c == 2)
 	{
 		sort_two(a);
-		return ;
+		return;
 	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
 	push_to_b(&a, &b, c);
 	sort_three(&a);
 	positional_sort(&a, &b, c - 3);
-	rotate_to_position(&a);
+	 rotate_to_position(&a);
+	// printf("*****************************");
+	/*free_list(&a);
+	free_list(&b);
+	free(arr);*/
+	 stack *aa = a;
+	 while(aa){
+	 	printf("%d",aa->num);
+	 	aa = aa->next;
+	 }
+
 }
