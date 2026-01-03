@@ -80,3 +80,15 @@ void	push_to_b(stack	**a, stack **b,	int c)
 		}
 	}
 }
+
+
+stack	*before_lastnode(stack	*s)
+{
+	stack	*last_node;
+
+	while ((s->next)->next)
+		s = s->next;
+	last_node = s->next;
+	s->next = NULL;
+	return (last_node);
+}

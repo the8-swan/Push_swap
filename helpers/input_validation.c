@@ -5,7 +5,7 @@ int is_valid(char *ptr)
 	int i =0;
 
 	i = 0;
-	if(i == 0 && (ptr[i] == '-' || ptr[i] == '+'))
+	if(i == 0 && ((ptr[i] == '-' || ptr[i] == '+') && ptr[i + 1]))
 		i++;
 	while(ptr[i] && ft_isdigit(ptr[i])){
 		i++;
@@ -18,7 +18,9 @@ int is_valid(char *ptr)
 
 int digits_counter(char **ptr)
 {
-	int c = 0;
+	int c ;
+	
+	c = 0;
 	while (ptr[c] != NULL)
 		c++;
 	return c;

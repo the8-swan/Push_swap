@@ -2,7 +2,7 @@
 NAME = pushswap.a
 CC = cc
 SFLAGS = -Wall -Werror -Wetra 
-SRC = helpers/ft_split.c helpers/input_validation.c helpers/core.c helpers/positional_utils.c helpers/stacks.c helpers/rules.c helpers/rules_utils.c helpers/quick_sort.c helpers/stack_utils.c helpers/free.c
+SRC = helpers/ft_split.c helpers/input_validation.c helpers/core.c helpers/positional_utils.c helpers/stacks.c helpers/rules.c helpers/rules_utils.c helpers/pre_sort.c helpers/stack_utils.c helpers/free.c
 SRC_OBJ=$(SRC:.c=.o)
 
 all:$(NAME)

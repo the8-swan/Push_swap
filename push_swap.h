@@ -34,6 +34,7 @@ int	calculate_costb(stack *b, stack *tmp);
 int	ft_abs(int number);
 int is_valid(char *ptr);
 int	ft_isdigit(int c);
+void free_ptr(char ***ptr);
 
 void	calculate_costa(stack *a, stack *tmp);
 

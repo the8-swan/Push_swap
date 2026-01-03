@@ -16,6 +16,7 @@ void sort_two(stack *a)
 {
 	if (a->num > (a->next)->num)
 		ft_swap(a, NULL);
+	free_list(&a);
 }
 
 static stack *find_min_cost(stack *b)
@@ -110,32 +111,25 @@ void push_swap(int *arr, int c)
 {
 	stack *a;
 	stack *b;
-	int i;
 
-	i = 0;
 	a = create_stack(arr, c);
 	b = NULL;
 	if (is_sorted(a))
-		return;
-	if (c == 2)
 	{
-		sort_two(a);
-		return;
+		free_list(&a);
+		return ;
+	}
+	 if (c == 2)
+	 {
+	 	sort_two(a);
+	 	return;
 	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);
 	push_to_b(&a, &b, c);
 	sort_three(&a);
 	positional_sort(&a, &b, c - 3);
-	 rotate_to_position(&a);
-	// printf("*****************************");
-	/*free_list(&a);
+	rotate_to_position(&a);
+	free_list(&a);
 	free_list(&b);
-	free(arr);*/
-	 stack *aa = a;
-	 while(aa){
-	 	printf("%d",aa->num);
-	 	aa = aa->next;
-	 }
-
 }

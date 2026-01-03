@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	strings = 0;
 	index = 0;
-	if (s == NULL)
+	if (s == NULL )
 		return (NULL);
 	strings = ft_strcount(s, c);
 	ptr = malloc((strings + 1) * sizeof(char *));
@@ -96,6 +96,7 @@ char	**ft_split(char const *s, char c)
 	ptr[i] = NULL;
 	return (ptr);
 }
+
 long	ft_atoi(const char *str)
 {
 	size_t	i;
