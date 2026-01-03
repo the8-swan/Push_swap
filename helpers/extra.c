@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   extra.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/03 17:51:59 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 18:24:23 by obakri           ###   ########.fr       */
+/*   Created: 2026/01/03 18:36:15 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/03 18:37:16 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	free_list(t_stack **st)
+int	ft_abs(int number)
 {
-	t_stack	*next;
-
-	while (*st)
-	{
-		next = (*st)->next;
-		free(*st);
-		*st = next;
-	}
+	if (number < 0)
+		return (-number);
+	return (number);
 }
 
-void	free_ptr(char ***ptr, int *arr)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	j;
+	size_t		i;
+	long		result;
+	int			sign;
 
 	i = 0;
-	j = 0;
-	while (ptr[i])
+	result = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		while (ptr[i][j])
-		{
-			free(ptr[i][j]);
-			j++;
-		}
-		free(ptr[i]);
-		j = 0;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	free(ptr);
-	free(arr);
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }

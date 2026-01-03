@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   pre_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:58:36 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 17:05:46 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 15:36:23 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	quick_sort(int *arr, int start, int end)
 	}
 }
 
-int	is_sorted(stack	*a)
+int	is_sorted(t_stack	*a)
 {
 	while (a->next)
 	{
@@ -66,10 +66,10 @@ int	is_sorted(stack	*a)
 	return (1);
 }
 
-void	sort_three(stack **a)
+void	sort_three(t_stack **a)
 {
-	stack	*head;
-	stack	*next;
+	t_stack	*head;
+	t_stack	*next;
 
 	head = *a;
 	next = (*a)->next;

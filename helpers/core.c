@@ -6,23 +6,23 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 21:38:33 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/01 22:03:10 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 17:54:19 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void sort_two(stack *a)
+void	sort_two(t_stack *a)
 {
 	if (a->num > (a->next)->num)
 		ft_swap(a, NULL);
 	free_list(&a);
 }
 
-static stack *find_min_cost(stack *b)
+static t_stack	*find_min_cost(t_stack *b)
 {
-	stack *cheapest;
-	int sum;
+	t_stack	*cheapest;
+	int		sum;
 
 	cheapest = NULL;
 	sum = INT_MAX;
@@ -38,13 +38,13 @@ static stack *find_min_cost(stack *b)
 	return (cheapest);
 }
 
-static void move_to_a(stack **a, stack **b, stack *cheapest)
+static void	move_to_a(t_stack **a, t_stack **b, t_stack *cheapest)
 {
-	int costa;
-	int costb;
+	int	costa;
+	int	costb;
 
 	if (!b || !*b || !cheapest)
-		return;
+		return ;
 	costa = cheapest->costa;
 	costb = cheapest->costb;
 	while (costa < 0 && costb < 0)
@@ -82,35 +82,35 @@ static void move_to_a(stack **a, stack **b, stack *cheapest)
 	ft_push(a, b, 'a');
 }
 
-void positional_sort(stack **a, stack **b, int c)
+void	positional_sort(t_stack **a, t_stack **b, int c)
 {
-	stack *tmp;
-	stack *cheapest;
-	int i;
+	t_stack	*tmp;
+	t_stack	*cheapest;
+	int		i;
 
 	i = 0;
 	while (i < c)
 	{
 		tmp = *b;
-		 	update_position(*a);
-		 	update_position(*b);
+		update_position(*a);
+		update_position(*b);
 		while (tmp)
-		 	{
-		 		calculate_costa(*a, tmp);
-		 		tmp->costb = calculate_costb(*b, tmp);
-		 		tmp = tmp->next;
-		 	}
-		 	tmp = *b;
-		 	cheapest = find_min_cost(tmp);
-		 	move_to_a(a, b, cheapest);
+		{
+			calculate_costa(*a, tmp);
+			tmp->costb = calculate_costb(*b, tmp);
+			tmp = tmp->next;
+		}
+		tmp = *b;
+		cheapest = find_min_cost(tmp);
+		move_to_a(a, b, cheapest);
 		i++;
 	}
 }
 
-void push_swap(int *arr, int c)
+void	push_swap(int *arr, int c)
 {
-	stack *a;
-	stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = create_stack(arr, c);
 	b = NULL;
@@ -119,10 +119,10 @@ void push_swap(int *arr, int c)
 		free_list(&a);
 		return ;
 	}
-	 if (c == 2)
-	 {
-	 	sort_two(a);
-	 	return;
+	if (c == 2)
+	{
+		sort_two(a);
+		return ;
 	}
 	quick_sort(arr, 0, c - 1);
 	assign_index(a, arr, c);

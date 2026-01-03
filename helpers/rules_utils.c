@@ -6,17 +6,16 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:48:26 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 16:57:33 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 15:45:20 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-
-void	rotate_helper(stack **a)
+void	rotate_helper(t_stack **a)
 {
-	stack	*next_node;
-	stack	*first_node;
+	t_stack	*next_node;
+	t_stack	*first_node;
 
 	next_node = (*a)->next;
 	first_node = *a;
@@ -25,18 +24,18 @@ void	rotate_helper(stack **a)
 	add_back(a, first_node);
 }
 
-void	rrotate_helper(stack **a)
+void	rrotate_helper(t_stack **a)
 {
-	stack	*last_node;
+	t_stack	*last_node;
 
 	last_node = before_lastnode(*a);
 	last_node->next = *a;
 	*a = last_node;
 }
 
-void	swap_helper(stack *head)
+void	swap_helper(t_stack *head)
 {
-	stack	*next;
+	t_stack	*next;
 	int		val;
 	int		index;
 
@@ -49,9 +48,9 @@ void	swap_helper(stack *head)
 	head->index = index;
 }
 
-void	push_helper(stack **a, stack **b)
+void	push_helper(t_stack **a, t_stack **b)
 {
-	stack	*first_node;
+	t_stack	*first_node;
 
 	first_node = *b;
 	*b = first_node -> next;

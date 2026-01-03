@@ -6,46 +6,46 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 17:06:16 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 17:11:32 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 17:16:02 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	helper(stack *a, int *index, int *position)
+static void	helper(t_stack *a, int *index, int *position)
 {
 	*index = a->index;
 	*position = a->position;
 }
 
-int	find_target(stack *a, stack *tmp)
+int	find_target(t_stack *a, t_stack *tmp)
 {
 	int		index;
 	int		position;
-	stack	*current;
+	t_stack	*current;
 
 	index = INT_MAX;
 	position = -1;
 	current = a;
-	 while (current)
-	 {
-	 	if (current->index > tmp->index && current->index < index)
-	 		helper(current, &index, &position);
-	 	current = current->next;
-	 }
-	 if (position < 0)
-	 {
-	 	while (a)
-	 	{
-	 		if (a->index < index)
-	 			helper(a, &index, &position);
-	 		a = a->next;
-	 	}
-	 }
+	while (current)
+	{
+		if (current->index > tmp->index && current->index < index)
+			helper(current, &index, &position);
+		current = current->next;
+	}
+	if (position < 0)
+	{
+		while (a)
+		{
+			if (a->index < index)
+				helper(a, &index, &position);
+			a = a->next;
+		}
+	}
 	return (position);
 }
 
-void	calculate_costa(stack *a, stack *tmp)
+void	calculate_costa(t_stack *a, t_stack *tmp)
 {
 	int	a_size;
 
@@ -57,7 +57,7 @@ void	calculate_costa(stack *a, stack *tmp)
 		tmp->costa = -(a_size - tmp->target);
 }
 
-int	calculate_costb(stack *b, stack *tmp)
+int	calculate_costb(t_stack *b, t_stack *tmp)
 {
 	int	current_position;
 	int	b_size;
@@ -70,19 +70,17 @@ int	calculate_costb(stack *b, stack *tmp)
 		return (-(b_size - tmp->position));
 }
 
-void	rotate_to_position(stack **a)
+void	rotate_to_position(t_stack **a)
 {
 	int		size_a;
 	int		i;
-	stack	*tmp;
+	t_stack	*tmp;
 
 	size_a = stack_size(*a);
 	i = 0;
 	tmp = *a;
-	while (tmp)
+	while (tmp && tmp->index != 0)
 	{
-		if (tmp->index == 0)
-			break ;
 		tmp = tmp -> next;
 		i++;
 	}

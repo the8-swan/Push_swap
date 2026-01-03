@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/03 17:20:44 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/03 17:28:56 by obakri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../push_swap.h"
 
 static size_t	ft_strcount(char const *s, char c)
@@ -95,36 +105,4 @@ char	**ft_split(char const *s, char c)
 	}
 	ptr[i] = NULL;
 	return (ptr);
-}
-
-long	ft_atoi(const char *str)
-{
-	size_t	i;
-	long		result;
-	int		sign;
-
-	i = 0;
-	result = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
-}
-
-int	ft_abs(int number)
-{
-	if(number < 0)
-		return (-number);
-	return (number);
 }

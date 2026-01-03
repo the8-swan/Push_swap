@@ -6,12 +6,12 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:10:10 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 16:47:45 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 16:28:14 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../push_swap.h"
 
-int	stack_size(stack *a)
+int	stack_size(t_stack *a)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	stack_size(stack *a)
 	return (i);
 }
 
-void	assign_index(stack *a, int *arr, int size)
+void	assign_index(t_stack *a, int *arr, int size)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	assign_index(stack *a, int *arr, int size)
 	}
 }
 
-void	update_position(stack *a)
+void	update_position(t_stack *a)
 {
 	int	size;
 	int	i;
@@ -59,7 +59,7 @@ void	update_position(stack *a)
 	}
 }
 
-void	push_to_b(stack	**a, stack **b,	int c)
+void	push_to_b(t_stack	**a, t_stack **b,	int c)
 {
 	int	pushed;
 	int	bign;
@@ -81,10 +81,9 @@ void	push_to_b(stack	**a, stack **b,	int c)
 	}
 }
 
-
-stack	*before_lastnode(stack	*s)
+t_stack	*before_lastnode(t_stack	*s)
 {
-	stack	*last_node;
+	t_stack	*last_node;
 
 	while ((s->next)->next)
 		s = s->next;

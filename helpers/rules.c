@@ -6,15 +6,15 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:19:44 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 16:47:59 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 15:40:02 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void ft_swap(stack *a, stack *b)
+void	ft_swap(t_stack *a, t_stack *b)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	if (a && a->next != NULL)
@@ -23,7 +23,7 @@ void ft_swap(stack *a, stack *b)
 		if (!b)
 		{
 			write(1, "sa\n", 3);
-			return;
+			return ;
 		}
 		c++;
 	}
@@ -33,7 +33,7 @@ void ft_swap(stack *a, stack *b)
 		if (!a)
 		{
 			write(1, "sb\n", 3);
-			return;
+			return ;
 		}
 		c++;
 	}
@@ -41,10 +41,10 @@ void ft_swap(stack *a, stack *b)
 		write(1, "ss\n", 3);
 }
 
-void ft_rrotate(stack **a, stack **b)
+void	ft_rrotate(t_stack **a, t_stack **b)
 {
-	int ca;
-	int cb;
+	int	ca;
+	int	cb;
 
 	ca = 0;
 	cb = 0;
@@ -66,10 +66,10 @@ void ft_rrotate(stack **a, stack **b)
 		write(1, "rrb\n", 4);
 }
 
-void ft_rotate(stack **a, stack **b)
+void	ft_rotate(t_stack **a, t_stack **b)
 {
-	int ca;
-	int cb;
+	int	ca;
+	int	cb;
 
 	ca = 0;
 	cb = 0;
@@ -91,7 +91,7 @@ void ft_rotate(stack **a, stack **b)
 		write(1, "rb\n", 3);
 }
 
-void ft_push(stack **a, stack **b, char c)
+void	ft_push(t_stack **a, t_stack **b, char c)
 {
 	if (c == 'a' && *b)
 	{
@@ -104,4 +104,3 @@ void ft_push(stack **a, stack **b, char c)
 		write(1, "pb\n", 3);
 	}
 }
-

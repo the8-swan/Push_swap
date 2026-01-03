@@ -2,11 +2,16 @@
 NAME = pushswap.a
 CC = cc
 SFLAGS = -Wall -Werror -Wetra 
-SRC = helpers/ft_split.c helpers/input_validation.c helpers/core.c helpers/positional_utils.c helpers/stacks.c helpers/rules.c helpers/rules_utils.c helpers/pre_sort.c helpers/stack_utils.c helpers/free.c
+SRC = helpers/ft_split.c helpers/input_validation.c helpers/core.c helpers/positional_utils.c helpers/stacks.c helpers/rules.c helpers/rules_utils.c helpers/pre_sort.c helpers/stack_utils.c helpers/free.c helpers/extra.c
+SRC_BONUS = bonus/checker.c
+
 SRC_OBJ=$(SRC:.c=.o)
+SRC_OBJB=$(SRC_BONUS:.c=.o)
 
 all:$(NAME)
 
+bonus: $(SRC_OBJB)
+	
 sws : $(NAME)
 	gcc main.c $(NAME) -o push_swap
 	rm -f $(NAME) $(SRC_OBJ)

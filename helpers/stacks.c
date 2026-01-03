@@ -6,16 +6,16 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:16:10 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/02 16:19:27 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/03 16:27:06 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../push_swap.h"
 
-stack	*create_node(int n)
+t_stack	*create_node(int n)
 {
-	stack	*new;
+	t_stack	*new;
 
-	new = malloc(sizeof(stack));
+	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
 	new->num = n;
@@ -23,16 +23,16 @@ stack	*create_node(int n)
 	return (new);
 }
 
-stack	*last_node(stack *head)
+t_stack	*last_node(t_stack *head)
 {
 	while (head->next)
 		head = head->next;
 	return (head);
 }
 
-void	add_back(stack **head, stack *new)
+void	add_back(t_stack **head, t_stack *new)
 {
-	stack	*last;
+	t_stack	*last;
 
 	if (!head || !new)
 		return ;
@@ -45,11 +45,11 @@ void	add_back(stack **head, stack *new)
 	last->next = new;
 }
 
-stack	*create_stack(int *arr, int c)
+t_stack	*create_stack(int *arr, int c)
 {
 	int		i;
-	stack	*head;
-	stack	*node;
+	t_stack	*head;
+	t_stack	*node;
 
 	i = 0;
 	head = NULL;
@@ -64,7 +64,7 @@ stack	*create_stack(int *arr, int c)
 	return (head);
 }
 
-void	add_front(stack **lst, stack *new)
+void	add_front(t_stack **lst, t_stack *new)
 {
 	if (!lst || !new)
 		return ;
