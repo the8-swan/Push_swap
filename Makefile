@@ -1,27 +1,53 @@
 
-NAME = pushswap.a
+NAME = push_swap
+BONUS = checker
 CC = cc
-SFLAGS = -Wall -Werror -Wetra 
-SRC = helpers/ft_split.c helpers/input_validation.c helpers/core.c helpers/positional_utils.c helpers/stacks.c helpers/rules.c helpers/rules_utils.c helpers/pre_sort.c helpers/stack_utils.c helpers/free.c helpers/extra.c
-SRC_BONUS = bonus/checker.c
+CFLAGS = -Wall -Werror -Wextra -Iincludes
+HELPERS = src/helpers/ft_split.c \
+		src/helpers/input_validation.c \
+		src/helpers/core.c \
+		src/helpers/positional_utils.c \
+		src/helpers/stacks.c \
+		src/helpers/rules.c \
+		src/helpers/rules_utils.c \
+		src/helpers/pre_sort.c \
+		src/helpers/stack_utils.c \
+		src/helpers/free.c \
+		src/helpers/extra.c \
 
-SRC_OBJ=$(SRC:.c=.o)
-SRC_OBJB=$(SRC_BONUS:.c=.o)
+PUSH_SWAP_SRC =\
+				src/ps/main.c \
+				$(HELPERS) \
 
-all:$(NAME)
+BONUS_SRC = \
+			src/bonus/checker_utils.c \
+			src/bonus/checker.c \
+			src/bonus/rules_bonus.c \
+			src/bonus/gnl/get_next_line.c \
+			src/bonus/gnl/get_next_line_utils.c \
+			$(HELPERS)
 
-bonus: $(SRC_OBJB)
-	
-sws : $(NAME)
-	gcc main.c $(NAME) -o push_swap
-	rm -f $(NAME) $(SRC_OBJ)
+PUSH_SWAP_SRC_OBJ = $(PUSH_SWAP_SRC:.c=.o)
+BONUS_SRC_OBG = $(BONUS_SRC:.c=.o)
 
-$(NAME):$(SRC_OBJ)
-	ar rcs $(NAME) $(SRC_OBJ)
+all : $(NAME)
+bonus : $(BONUS)
+
+$(NAME) : $(PUSH_SWAP_SRC_OBJ)
+	@$(CC) $(CFLAGS) $^ -o $@
+
+$(BONUS) : $(BONUS_SRC_OBG)
+	@$(CC) $(CFLAGS) $^ -o $@
+
+%.o : %.c 
+	@$(CC) -c $(CFLAGS) $< -o $@
+
 clean:
-	rm -f $(SRC_OBJ)
+	@rm -f $(PUSH_SWAP_SRC_OBJ) $(BONUS_SRC_OBG)
 
-fclean:clean
-	rm -f $(NAME)
+fclean: clean
+	@rm -f $(NAME) $(BONUS)
 
-re: clean fclean all re
+re : fclean
+
+.PHONY : fclean re clean all

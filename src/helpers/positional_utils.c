@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static void	helper(t_stack *a, int *index, int *position)
 {
@@ -59,10 +59,8 @@ void	calculate_costa(t_stack *a, t_stack *tmp)
 
 int	calculate_costb(t_stack *b, t_stack *tmp)
 {
-	int	current_position;
 	int	b_size;
 
-	current_position = tmp->position;
 	b_size = stack_size(b);
 	if (tmp->position <= b_size / 2)
 		return (tmp->position);

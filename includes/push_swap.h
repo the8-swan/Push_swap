@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 18:25:08 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 18:39:08 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/06 09:31:46 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct stack
 	int				costb;
 	int				costa;
 	struct stack	*next;
-}t_stack;
+}	t_stack;
 
 char	**ft_split(char const *s, char c);
 
@@ -43,6 +43,8 @@ int		calculate_costb(t_stack *b, t_stack *tmp);
 int		ft_abs(int number);
 int		is_valid(char *ptr);
 int		ft_isdigit(int c);
+int		check_empty(char *str);
+int		fill_ptr(char ***ptr, char **argv, int argc);
 
 t_stack	*before_lastnode(t_stack *s);
 t_stack	*create_stack(int *arr, int c);
@@ -69,4 +71,7 @@ void	rotate_to_position(t_stack **a);
 void	free_list(t_stack **stack);
 void	free_ptr(char ***ptr, int *arr);
 void	calculate_costa(t_stack *a, t_stack *tmp);
+
+size_t	ft_strl(const char *str);
+
 #endif

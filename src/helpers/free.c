@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/03 18:24:23 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	free_list(t_stack **st)
 {

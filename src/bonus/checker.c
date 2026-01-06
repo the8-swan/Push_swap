@@ -1,63 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/03 17:55:01 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 18:23:46 by obakri           ###   ########.fr       */
+/*   Created: 2026/01/06 09:35:00 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/06 09:40:30 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "checker.h"
 
-#include "push_swap.h"
-
-static int	check_empty(char *str)
+void	check_sorted(t_stack *a)
 {
-	int	i;
-	int	c;
-
-	i = 0;
-	c = 0;
-	while (c == 0 && str[i])
-	{
-		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-			i++;
-		else
-		{
-			c++;
-			break ;
-		}
-	}
-	return (c);
+	if (is_sorted(a))
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 }
 
-static int	fill_ptr(char ***ptr, int *arr, char **argv, int argc)
+void	checker(int *arr, int c)
 {
-	int	i;
-	int	counter;
+	t_stack	*a;
+	t_stack	*b;
+	char	*instruction;
 
-	i = 0;
-	counter = 0;
-	while (i + 1 < argc)
+	a = create_stack(arr, c);
+	b = NULL;
+	while ((instruction = get_next_line(0)) != NULL)
 	{
-		if (!check_empty(argv[i + 1]))
+		if (is_instruction(instruction))
 		{
-			free_ptr(ptr, arr);
-			return (write(1, "Error\n", 6), -1);
+			if (instruction[0] == 'p' || instruction[0] == 's')
+				execute_s_p(&a, &b, instruction);
+			else
+				execute_r_rr(&a, &b, instruction);
 		}
-		ptr[i] = ft_split(argv[i + 1], ' ');
-		if (!ptr[i])
-			return (free_ptr(ptr, arr), 0);
-		counter += digits_counter(ptr[i]);
-		i++;
+		else
+		{
+			write(1, "Error\n", 6);
+			free_list(&a);
+			free_list(&b);
+			return ;
+		}
+		free(instruction);
 	}
-	ptr[i] = NULL;
-	return (counter);
+	check_sorted(a);
 }
 
 int	main(int argc, char **argv)
-{
+{	
 	char	***ptr;
 	int		counter;
 	int		*arr;
@@ -68,7 +60,7 @@ int	main(int argc, char **argv)
 	ptr = malloc(sizeof(char **) * argc);
 	if (!ptr)
 		return (0);
-	counter = fill_ptr(ptr, arr, argv, argc);
+	counter = fill_ptr(ptr, argv, argc);
 	if (counter == -1)
 		return (0);
 	arr = malloc(sizeof(int) * counter);
@@ -77,7 +69,7 @@ int	main(int argc, char **argv)
 	counter = fill_arr(arr, ptr);
 	if (counter == -1)
 		return (free_ptr(ptr, arr), 0);
-	push_swap(arr, counter);
+	checker(arr, counter);
 	free_ptr(ptr, arr);
 	return (0);
 }

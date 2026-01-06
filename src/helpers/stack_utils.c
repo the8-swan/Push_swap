@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/03 16:28:14 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	stack_size(t_stack *a)
 {
@@ -85,6 +85,8 @@ t_stack	*before_lastnode(t_stack	*s)
 {
 	t_stack	*last_node;
 
+	if (!s || !s->next)
+		return (NULL);
 	while ((s->next)->next)
 		s = s->next;
 	last_node = s->next;

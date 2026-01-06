@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	is_valid(char *ptr)
 {
@@ -21,7 +21,7 @@ int	is_valid(char *ptr)
 		i++;
 	while (ptr[i] && ft_isdigit(ptr[i]))
 		i++;
-	if (ptr[i] == '\0')
+	if (ptr[i] == '\0' && ft_strl(ptr) <= 11)
 		return (i);
 	else
 		return (0);
@@ -44,7 +44,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-static int	is_unique(int value, int *arr, int index)
+static int	is_unique(long value, int *arr, int index)
 {
 	int	i;
 
@@ -63,6 +63,7 @@ int	fill_arr(int *arr, char ***ptr)
 	int	i;
 	int	in;
 	int	z;
+	long number;
 
 	in = 0;
 	z = 0;
@@ -72,12 +73,13 @@ int	fill_arr(int *arr, char ***ptr)
 		while (ptr[z][i])
 		{
 			if (!is_valid(ptr[z][i]))
-				return (write(1, "Error\n", 6), -1);
-			arr[in] = ft_atoi(ptr[z][i]);
-			if (arr[in] > INT_MAX || arr[in] < INT_MIN)
-				return (write(1, "Error\n", 6), -1);
-			if (!is_unique(arr[in], arr, in))
-				return (write(1, "Error\n", 6), -1);
+				return (write(2, "Error\n", 6), -1);
+			number = ft_atoi(ptr[z][i]);
+			if (number > INT_MAX || number < INT_MIN)
+				return (write(2, "Error\n", 6), -1);
+			if (!is_unique(number, arr, in))
+				return (write(2, "Error\n", 6), -1);
+			arr[in] = number;
 			i++;
 			in++;
 		}

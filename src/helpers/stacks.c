@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/03 16:27:06 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../push_swap.h"
+#include "push_swap.h"
 
 t_stack	*create_node(int n)
 {

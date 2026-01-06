@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	sort_two(t_stack *a)
 {
@@ -117,6 +117,7 @@ void	push_swap(int *arr, int c)
 	if (is_sorted(a))
 	{
 		free_list(&a);
+		
 		return ;
 	}
 	if (c == 2)
