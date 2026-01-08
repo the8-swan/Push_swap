@@ -23,8 +23,8 @@ BONUS_SRC = \
 			src/bonus/checker_utils.c \
 			src/bonus/checker.c \
 			src/bonus/rules_bonus.c \
-			src/bonus/gnl/get_next_line.c \
-			src/bonus/gnl/get_next_line_utils.c \
+			src/bonus/get_next_line.c \
+			src/bonus/get_next_line_utils.c \
 			$(HELPERS)
 
 PUSH_SWAP_SRC_OBJ = $(PUSH_SWAP_SRC:.c=.o)

@@ -1,0 +1,122 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/13 20:12:53 by obakri            #+#    #+#             */
+/*   Updated: 2026/01/06 09:34:08 by obakri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "get_next_line.h"
+#include <stdio.h>
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	slen;
+	char	*ptr;
+
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	slen = ft_strlen(s);
+	if (start > slen)
+		len = 0;
+	if (len > slen - start)
+		len = slen - start;
+	ptr = malloc((len +1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while (i < len)
+		ptr[i++] = s[start++];
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+int	ft_checknewline(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (i + 1);
+		i++;
+	}
+	return (-1);
+}
+
+char	*ft_leftc(char *line)
+{
+	int		n;
+	char	*left;
+
+	n = ft_checknewline(line);
+	if (n == -1)
+		return (NULL);
+	left = ft_substr(line, n, ft_strlen(line) - n);
+	if (!left || left[0] == '\0')
+	{
+		free(left);
+		left = NULL;
+		return (NULL);
+	}
+	ft_bzero(line + n, ft_strlen(line) - n);
+	return (left);
+}
+
+char	*ft_returned_ligne(char *buffer, char *left, int fd)
+{
+	ssize_t	r;
+	char	*tmp;
+
+	while (ft_checknewline(buffer) < 0)
+	{
+		r = read(fd, buffer, BUFFER_SIZE);
+		if (r == -1)
+		{
+			free(left);
+			return (NULL);
+		}
+		else if (r == 0)
+			break ;
+		if (!left)
+			left = ft_strdup("");
+		buffer[r] = '\0';
+		tmp = left;
+		left = ft_strjoin(tmp, buffer);
+		if (!left)
+			left = NULL;
+		free(tmp);
+	}
+	return (left);
+}
+
+char	*get_next_line(int fd)
+{
+	char			*buffer;
+	char			*line;
+	static char		*left;
+	unsigned long	number;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	number = (BUFFER_SIZE + sizeof(char));
+	buffer = malloc(number * sizeof(char));
+	buffer[0] = '\0';
+	if (!buffer)
+		return (NULL);
+	line = ft_returned_ligne(buffer, left, fd);
+	free(buffer);
+	if (!line)
+	{
+		free(line);
+		free(left);
+		return (NULL);
+	}
+	left = ft_leftc(line);
+	return (line);
+}
