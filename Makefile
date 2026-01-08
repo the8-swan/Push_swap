@@ -20,11 +20,11 @@ PUSH_SWAP_SRC =\
 				$(HELPERS) \
 
 BONUS_SRC = \
-			src/bonus/checker_utils.c \
-			src/bonus/checker.c \
+			src/bonus/checker_utils_bonus.c \
+			src/bonus/checker_bonus.c \
 			src/bonus/rules_bonus.c \
-			src/bonus/get_next_line.c \
-			src/bonus/get_next_line_utils.c \
+			src/bonus/get_next_line_bonus.c \
+			src/bonus/get_next_line_utils_bonus.c \
 			$(HELPERS)
 
 PUSH_SWAP_SRC_OBJ = $(PUSH_SWAP_SRC:.c=.o)
