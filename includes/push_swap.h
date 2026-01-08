@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 18:25:08 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/06 09:31:46 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/08 17:57:34 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	rotate_to_position(t_stack **a);
 void	free_list(t_stack **stack);
 void	free_ptr(char ***ptr, int *arr);
 void	calculate_costa(t_stack *a, t_stack *tmp);
+void	ror(t_stack **a, t_stack **b, int costa, int costb);
+void	execute_operation(char *instruction, t_stack **a, t_stack **b);
 
 size_t	ft_strl(const char *str);
 

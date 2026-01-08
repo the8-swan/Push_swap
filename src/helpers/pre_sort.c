@@ -57,6 +57,8 @@ void	quick_sort(int *arr, int start, int end)
 
 int	is_sorted(t_stack	*a)
 {
+	if (a == NULL)
+		return (0);
 	while (a->next)
 	{
 		if (a->num > (a->next)->num)

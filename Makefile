@@ -14,6 +14,7 @@ HELPERS = src/helpers/ft_split.c \
 		src/helpers/stack_utils.c \
 		src/helpers/free.c \
 		src/helpers/extra.c \
+		src/helpers/helper.c
 
 PUSH_SWAP_SRC =\
 				src/ps/main.c \
@@ -25,6 +26,7 @@ BONUS_SRC = \
 			src/bonus/rules_bonus.c \
 			src/bonus/get_next_line_bonus.c \
 			src/bonus/get_next_line_utils_bonus.c \
+			src/bonus/helper_bonus.c\
 			$(HELPERS)
 
 PUSH_SWAP_SRC_OBJ = $(PUSH_SWAP_SRC:.c=.o)

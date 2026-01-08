@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 15:45:31 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 15:52:38 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/08 17:07:21 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ static int	is_unique(long value, int *arr, int index)
 
 int	fill_arr(int *arr, char ***ptr)
 {
-	int	i;
-	int	in;
-	int	z;
-	long number;
+	int		i;
+	int		in;
+	int		z;
+	long	number;
 
 	in = 0;
-	z = 0;
+	z = -1;
 	i = 0;
-	while (ptr[z])
+	while (ptr[++z])
 	{
 		while (ptr[z][i])
 		{
@@ -79,12 +79,10 @@ int	fill_arr(int *arr, char ***ptr)
 				return (write(2, "Error\n", 6), -1);
 			if (!is_unique(number, arr, in))
 				return (write(2, "Error\n", 6), -1);
-			arr[in] = number;
+			arr[in++] = number;
 			i++;
-			in++;
 		}
 		i = 0;
-		z++;
 	}
 	return (in);
 }

@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:20:44 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 17:28:56 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/08 18:01:23 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -26,7 +26,7 @@ static size_t	ft_strcount(char const *s, char c)
 	}
 	return (counter);
 }
- 
+
 static char	*ft_allocate(const char *s, char c, size_t index)
 {
 	char	*ptr;

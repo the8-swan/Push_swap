@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "checker_bonus.h"
 
 void	execute_s_p(t_stack **a, t_stack **b, char *instruction)
 {

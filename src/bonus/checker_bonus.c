@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 09:35:00 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/06 09:40:30 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/08 20:47:30 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "checker.h"
+
+#include "checker_bonus.h"
 
 void	check_sorted(t_stack *a)
 {
@@ -17,6 +18,14 @@ void	check_sorted(t_stack *a)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	free_list(&a);
+}
+
+static void	handle_error(t_stack *a, t_stack *b)
+{
+	write(2, "Error\n", 6);
+	free_list(&a);
+	free_list(&b);
 }
 
 void	checker(int *arr, int c)
@@ -27,24 +36,21 @@ void	checker(int *arr, int c)
 
 	a = create_stack(arr, c);
 	b = NULL;
-	while ((instruction = get_next_line(0)) != NULL)
+	instruction = get_next_line(0);
+	while (instruction != NULL)
 	{
 		if (is_instruction(instruction))
-		{
-			if (instruction[0] == 'p' || instruction[0] == 's')
-				execute_s_p(&a, &b, instruction);
-			else
-				execute_r_rr(&a, &b, instruction);
-		}
+			execute_operation(instruction, &a, &b);
 		else
 		{
-			write(1, "Error\n", 6);
-			free_list(&a);
-			free_list(&b);
+			handle_error(a, b);
 			return ;
 		}
 		free(instruction);
+		instruction = get_next_line(0);
 	}
+	free(instruction);
+	free_list(&b);
 	check_sorted(a);
 }
 

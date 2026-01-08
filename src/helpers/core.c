@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 21:38:33 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 17:54:19 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/08 17:59:30 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,7 @@ static void	move_to_a(t_stack **a, t_stack **b, t_stack *cheapest)
 		(costa)--;
 		(costb)--;
 	}
-	while (costa > 0)
-	{
-		ft_rotate(a, NULL);
-		(costa)--;
-	}
-	while (costa < 0)
-	{
-		ft_rrotate(a, NULL);
-		(costa)++;
-	}
-	while (costb > 0)
-	{
-		ft_rotate(NULL, b);
-		(costb)--;
-	}
-	while (costb < 0)
-	{
-		ft_rrotate(NULL, b);
-		(costb)++;
-	}
+	ror(a, b, costa, costb);
 	ft_push(a, b, 'a');
 }
 
@@ -117,7 +98,6 @@ void	push_swap(int *arr, int c)
 	if (is_sorted(a))
 	{
 		free_list(&a);
-		
 		return ;
 	}
 	if (c == 2)
