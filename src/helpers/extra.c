@@ -37,7 +37,6 @@ int	check_empty(char *str)
 	}
 	return (c);
 }
- 
 int	fill_ptr(char ***ptr, char **argv, int argc)
 {
 	int	i;

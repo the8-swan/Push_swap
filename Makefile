@@ -48,6 +48,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME) $(BONUS)
 
-re : fclean
+re : fclean all
 
 .PHONY : fclean re clean all
