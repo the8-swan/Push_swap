@@ -14,7 +14,7 @@
 # define CHECKER_BONUS_H
 
 # include "push_swap.h"
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 
 void	execute_s_p(t_stack **a, t_stack **b, char *instruction);
 void	execute_r_rr(t_stack **a, t_stack **b, char *instruction);
@@ -23,7 +23,7 @@ void	ft_swap_bonus(t_stack *a, t_stack *b);
 void	ft_rrotate_bonus(t_stack **a, t_stack **b);
 void	ft_rotate_bonus(t_stack **a, t_stack **b);
 void	ft_push_bonus(t_stack **a, t_stack **b, char c);
-void	check_sorted(t_stack *a);
+void	check_sorted(t_stack *a, t_stack *b);
 
 int		is_instruction(char *instruction);
 

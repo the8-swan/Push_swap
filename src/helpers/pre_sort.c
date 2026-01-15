@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 16:58:36 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/03 15:36:23 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/13 01:14:58 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	quick_sort(int *arr, int start, int end)
 	}
 }
 
-int	is_sorted(t_stack	*a)
+int	is_sorted(t_stack	*a, t_stack	*b)
 {
-	if (a == NULL)
+	if (a == NULL || b != NULL)
 		return (0);
 	while (a->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 18:36:15 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/08 16:26:15 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/13 01:15:28 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	fill_ptr(char ***ptr, char **argv, int argc)
 	{
 		if (!check_empty(argv[i + 1]))
 		{
+			ptr[i] = 0;
 			free_ptr(ptr, NULL);
 			return (write(2, "Error\n", 6), -1);
 		}

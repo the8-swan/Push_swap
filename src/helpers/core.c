@@ -95,7 +95,7 @@ void	push_swap(int *arr, int c)
 
 	a = create_stack(arr, c);
 	b = NULL;
-	if (is_sorted(a))
+	if (is_sorted(a, b))
 	{
 		free_list(&a);
 		return ;

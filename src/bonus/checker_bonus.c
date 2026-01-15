@@ -6,15 +6,15 @@
 /*   By: obakri <obakri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 09:35:00 by obakri            #+#    #+#             */
-/*   Updated: 2026/01/08 20:47:30 by obakri           ###   ########.fr       */
+/*   Updated: 2026/01/13 01:16:00 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-void	check_sorted(t_stack *a)
+void	check_sorted(t_stack *a, t_stack *b)
 {
-	if (is_sorted(a))
+	if (is_sorted(a, b))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
@@ -44,14 +44,15 @@ void	checker(int *arr, int c)
 		else
 		{
 			handle_error(a, b);
+			free(instruction);
 			return ;
 		}
 		free(instruction);
 		instruction = get_next_line(0);
 	}
 	free(instruction);
+	check_sorted(a, b);
 	free_list(&b);
-	check_sorted(a);
 }
 
 int	main(int argc, char **argv)

@@ -2,7 +2,7 @@
 NAME = push_swap
 BONUS = checker
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Iincludes
+CFLAGS = -Wall -Werror -Wextra -I includes
 HELPERS = src/helpers/ft_split.c \
 		src/helpers/input_validation.c \
 		src/helpers/core.c \
@@ -29,26 +29,20 @@ BONUS_SRC = \
 			src/bonus/helper_bonus.c\
 			$(HELPERS)
 
-PUSH_SWAP_SRC_OBJ = $(PUSH_SWAP_SRC:.c=.o)
-BONUS_SRC_OBG = $(BONUS_SRC:.c=.o)
-
 all : $(NAME)
 bonus : $(BONUS)
 
-$(NAME) : $(PUSH_SWAP_SRC_OBJ)
+$(NAME) : $(PUSH_SWAP_SRC)
 	@$(CC) $(CFLAGS) $^ -o $@
 
-$(BONUS) : $(BONUS_SRC_OBG)
+$(BONUS) : $(BONUS_SRC)
 	@$(CC) $(CFLAGS) $^ -o $@
-
-%.o : %.c 
-	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	@rm -f $(PUSH_SWAP_SRC_OBJ) $(BONUS_SRC_OBG)
+	@rm -f $(NAME) 
 
 fclean: clean
-	@rm -f $(NAME) $(BONUS)
+	@rm -f $(BONUS)
 
 re : fclean all
 

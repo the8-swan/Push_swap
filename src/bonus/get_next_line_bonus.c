@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/06 09:34:08 by obakri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {

@@ -36,7 +36,7 @@ long	ft_atoi(const char *str);
 int		fill_arr(int *arr, char ***ptr);
 int		ft_isdigit(int c);
 int		digits_counter(char **ptr);
-int		is_sorted(t_stack	*a);
+int		is_sorted(t_stack	*a, t_stack	*b);
 int		stack_size(t_stack *a);
 int		find_target(t_stack *a, t_stack *tmp);
 int		calculate_costb(t_stack *b, t_stack *tmp);
